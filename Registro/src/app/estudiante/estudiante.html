@@ -1,0 +1,42 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Registro de notas</h2>
+    <button class="btn btn-primary" (click)="cargarEstudiantes()" [disabled]="cargando()">
+      Recargar
+    </button>
+  </div>
+
+  <p *ngIf="cargando()">Cargando estudiantes...</p>
+  <div *ngIf="error()" class="alert alert-danger">{{ error() }}</div>
+
+  <div class="table-responsive" *ngIf="!error()">
+    <table class="table table-striped table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>Nombre</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Nota 3</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of estudiantes()">
+          <td>{{ estudiante.nombre }}</td>
+          <td>{{ estudiante.nota1 }}</td>
+          <td>{{ estudiante.nota2 }}</td>
+          <td>{{ estudiante.nota3 }}</td>
+          <td>
+            <button type="button" class="btn btn-outline-primary btn-sm"
+              [routerLink]="['/productos', estudiante.id]">
+              Detalle
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="!cargando() && estudiantes().length === 0" class="text-muted">
+      No hay estudiantes para mostrar.
+    </p>
+  </div>
+</div>

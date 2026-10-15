@@ -1,0 +1,17 @@
+<div class="container py-4">
+  <a class="btn btn-outline-secondary mb-3" routerLink="/productos">Volver a la lista</a>
+
+  <p *ngIf="cargando()">Cargando detalle del estudiante...</p>
+  <div *ngIf="error()" class="alert alert-danger">{{ error() }}</div>
+
+  <section *ngIf="estudiante() as estudiante" class="card">
+    <div class="card-header">
+      <h2 class="h4 mb-0">Detalle de {{ estudiante.nombre }}</h2>
+    </div>
+    <div class="card-body">
+      <p><strong>Promedio:</strong> {{ promedio() | number:'1.2-2' }}</p>
+      <p><strong>Estado:</strong> {{ estado() }}</p>
+      <p class="mb-0"><strong>Observación:</strong> {{ observacion() }}</p>
+    </div>
+  </section>
+</div>
